@@ -14,7 +14,7 @@
  * permissions and limitations under the License.
  *
  */
-package org.mycompany;
+package com.redhat.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
