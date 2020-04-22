@@ -1,0 +1,29 @@
+{
+	"name": "registration-live-ui",
+	"title": "Live Registration Monitor",
+	"description": "Live Registration Monitor",
+	"version": "1.12.1",
+	"homepage": "http://jqueryui.com",
+	"main": "ui/widget.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/weimeilin79/sko2018.git"
+	},
+	"scripts": {
+		"start": "node app.js",
+		"clean": "rm -rf dist/*"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"event-stream": "^3.3.4",
+		"express": "^4.16.2",
+		"commitplease": "2.3.0",
+		"ejs": "^2.5.7"
+	},
+	"devDependencies": {
+		"commitplease": "2.3.0",
+		"ejs": "^2.5.7",
+		"event-stream": "^3.3.4"
+	},
+	"keywords": []
+}

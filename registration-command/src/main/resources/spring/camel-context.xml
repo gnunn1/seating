@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <!-- Define a traditional camel context here -->
+    <bean class="org.apache.camel.component.kafka.KafkaComponent" id="kafka">
+        <property name="brokers" value="sko-kafka-bootstrap:9092"/>
+    </bean>
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <restConfiguration apiContextPath="api-docs" bindingMode="auto"
+            component="undertow" contextPath="/skoregistration"
+            enableCORS="true" port="8080">
+            <apiProperty key="cors" value="true"/>
+            <apiProperty key="api.title" value="SKO Registration"/>
+            <apiProperty key="api.version" value="1.0.0"/>
+        </restConfiguration>
+        <rest id="reservation-seat-data" path="/sa">
+            <get id="get-reserved=seats" uri="/status">
+                <description>Integration talk seat reserve status</description>
+                <to uri="direct:getData"/>
+            </get>
+        </rest>
+        <route id="reserve-seat">
+            <from id="kafka" uri="kafka:registration"/>
+            <log id="log-initial-message" message=">>> ${body}"/>
+            <setHeader headerName="candidatename" id="set-header-candidate">
+                <jsonpath>$.candidatename</jsonpath>
+            </setHeader>
+            <setHeader headerName="email" id="set-header-email">
+                <jsonpath>$.email</jsonpath>
+            </setHeader>
+            <setHeader headerName="seatname" id="set-header-seat-name">
+                <jsonpath>$.seatname</jsonpath>
+            </setHeader>
+            <setHeader headerName="seatno" id="set-header-seat-no">
+                <jsonpath>$.seatno</jsonpath>
+            </setHeader>
+            <log id="log-updated-body" message=">>> ${body}"/>
+            <to id="insert-seat-reservation" uri="sql:INSERT INTO reservationlist (candidatename,email,seatname,seatno) VALUES (:#candidatename,:#email,:#seatname,:#seatno);?dataSource=dataSource"/>
+        </route>
+        <route id="get-data-route">
+            <from id="from-web-service" uri="direct:getData"/>
+            <log id="log-body" message=">>> ${body}"/>
+            <to id="retrieve-data" uri="sql:select candidatename, email, seatname, seatno from reservationlist; "/>
+            <log id="log-body" message=">>> ${body}"/>
+        </route>
+    </camelContext>
+</beans>
