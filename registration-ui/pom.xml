@@ -16,7 +16,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <version.jboss.bom.eap>6.4.0.GA</version.jboss.bom.eap>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <camel.version>2.21.0.fuse-710018-redhat-00001</camel.version>
+    <camel.version>2.24.0</camel.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
     <version.junit>4.11</version.junit>
