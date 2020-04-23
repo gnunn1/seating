@@ -1,7 +1,7 @@
-package org.mycompany;
+package com.redhat.demo;
 
 public class Reservation {
-	
+
 	String candidatename;
 	String email;
 	String seatname;
@@ -30,6 +30,6 @@ public class Reservation {
 	public void setSeatno(String seatno) {
 		this.seatno = seatno;
 	}
-	
+
 
 }
