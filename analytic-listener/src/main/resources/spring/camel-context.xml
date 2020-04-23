@@ -3,7 +3,7 @@
     xmlns:camel="http://camel.apache.org/schema/spring"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
     <bean class="org.apache.camel.component.kafka.KafkaComponent" id="kafka">
-        <property name="brokers" value="sko-kafka-bootstrap:9092"/>
+        <property name="brokers" value="seating-kafka-bootstrap:9092"/>
     </bean>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="api-docs" bindingMode="auto"
