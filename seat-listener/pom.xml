@@ -3,9 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.redhat.demo.seating</groupId>
-  <artifactId>seat-ui-listener</artifactId>
+  <artifactId>seat-listener</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>Seat UI Listener</name>
+  <name>Seat Listener</name>
   <description>Service that accepts bookings from messaging and persists it in a database</description>
   <properties>
     <fuse.version>7.6.0.fuse-sb2-760028-redhat-00001</fuse.version>

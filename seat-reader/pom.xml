@@ -3,9 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.redhat.demo.seating</groupId>
-  <artifactId>seat-ui-reader</artifactId>
+  <artifactId>seat-reader</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>Seat UI Reader</name>
+  <name>Seat Reader</name>
   <description>Application that reads books seats from database and returns it through a web interface</description>
   <properties>
     <fuse.version>7.6.0.fuse-sb2-760028-redhat-00001</fuse.version>
