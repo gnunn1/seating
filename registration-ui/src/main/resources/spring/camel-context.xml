@@ -33,9 +33,7 @@
                 <json library="Jackson" unmarshalTypeName="com.redhat.demo.Registration"/>
             </marshal>
             <log id="log-body" message="${body}"/>
-<!--
              <to id="send-seat" uri="kafka:registration"/>
--->
         </route>
     </camelContext>
 </beans>
