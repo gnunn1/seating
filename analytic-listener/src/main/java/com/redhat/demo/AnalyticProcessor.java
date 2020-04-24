@@ -1,4 +1,4 @@
-package com.redhat.com;
+package com.redhat.demo;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
