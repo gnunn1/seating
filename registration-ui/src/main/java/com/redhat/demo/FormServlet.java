@@ -28,15 +28,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/form" )
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@WebServlet(name = "FormServlet", urlPatterns = { "/form/*" }, loadOnStartup = 1)
 public class FormServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 3790651973586049298L;
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	private static final Logger LOGGER = LoggerFactory.getLogger(FormServlet.class);
 
-		 RequestDispatcher rd = req.getRequestDispatcher("/form.html");
+	@Override
+	protected void doGet(final HttpServletRequest req, final HttpServletResponse res)
+			throws ServletException, IOException {
+
+		LOGGER.info("Serving the form");
+		final RequestDispatcher rd = req.getRequestDispatcher("/form.html");
 		 rd.forward(req, res);
     }
 }

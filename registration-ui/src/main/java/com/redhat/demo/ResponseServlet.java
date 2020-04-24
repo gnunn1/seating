@@ -29,30 +29,37 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@WebServlet(name = "CamelServiceServlet", urlPatterns = { "/registration/*" }, loadOnStartup = 1)
+@WebServlet(name = "RegistrationServlet", urlPatterns = { "/registration/*" }, loadOnStartup = 1)
 public class ResponseServlet extends HttpServlet {
-	/**
-	 *
-	 */
+
 	private static final long serialVersionUID = 1L;
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ResponseServlet.class);
 
 	@Autowired
 	private CamelContext camelContext;
 
     @Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+		LOGGER.info("Handling the response");
+
         String candidatename = req.getParameter("candidatename");
         String email = req.getParameter("email");
         String seatname = req.getParameter("seatname");
         String seatno = req.getParameter("seatno");
 
-        Registration registration = new Registration(candidatename,email,seatname,seatno);
+		Registration registration = new Registration(candidatename,email,seatname,seatno);
+		LOGGER.info("Publishing to kafka: " + registration);
+
     	ProducerTemplate producer = camelContext.createProducerTemplate();
         producer.requestBody("direct:start", registration);
 
-
+		LOGGER.info("Redirecting to completed page");
 		res.sendRedirect("/done.html");
     }
 }

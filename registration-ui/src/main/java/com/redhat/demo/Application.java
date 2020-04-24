@@ -24,9 +24,7 @@ import org.springframework.context.annotation.ImportResource;
  * A spring-boot application that includes a Camel route builder to setup the Camel routes
  */
 @SpringBootApplication
-@ServletComponentScan(basePackages = {
-    "com.redhat.demo"
-   })
+@ServletComponentScan()
 @ImportResource({"classpath:spring/camel-context.xml"})
 public class Application {
 
