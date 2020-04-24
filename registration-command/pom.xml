@@ -50,8 +50,8 @@
       <artifactId>camel-undertow-starter</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-kafka-starter</artifactId>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-kafka</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
