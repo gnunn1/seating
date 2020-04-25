@@ -3,10 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.redhat.demo.seating</groupId>
-  <artifactId>transform-message</artifactId>
+  <artifactId>seat-request</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>Transform Kafka Message</name>
-  <description>Service that receives kafka message, transforms it, and places it on outbound queue</description>
+  <name>Request seat based on reservation</name>
+  <description>Receives seat reservations from queue and requests allocated seat on separate queue</description>
   <properties>
     <fuse.version>7.6.0.fuse-sb2-760028-redhat-00001</fuse.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
