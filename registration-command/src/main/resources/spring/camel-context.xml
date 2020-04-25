@@ -8,10 +8,10 @@
     </bean>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="api-docs" bindingMode="auto"
-            component="undertow" contextPath="/skoregistration"
+            component="undertow" contextPath="/registration"
             enableCORS="true" port="8080">
             <apiProperty key="cors" value="true"/>
-            <apiProperty key="api.title" value="SKO Registration"/>
+            <apiProperty key="api.title" value="Registration"/>
             <apiProperty key="api.version" value="1.0.0"/>
         </restConfiguration>
         <rest id="reservation-seat-data" path="/sa">

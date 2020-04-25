@@ -5,41 +5,41 @@
 <html>
 	<head>
 		<title>Red Hat Integration Demo </title>
-		
+
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="jquery.seat-charts.css">
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
-	
+
 	<body>
-		
+
 		<div class="wrapper">
 			<div class="container">
 				<div id="seat-map">
 					<div class="front-indicator">THE RED HAT INTEGRATION DEMO  </div>
-					
+
 				</div>
 				<!--<div class="booking-details">
 					<h2>Booking Details</h2>
-					
+
 					<h3> Selected Seats (<span id="counter">0</span>):</h3>
 					<ul id="selected-seats"></ul>
-					
+
 					Total: <b>$<span id="total">0</span></b>
-					
+
 					<button class="checkout-button">Checkout &raquo;</button>
-					
+
 					<div id="legend"></div>
 				</div>-->
 			</div>
 		</div>
-		
+
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="jquery.seat-charts.js"></script>
-		
+
 		<script>
 			var firstSeatLabel = 1;
-		
+
 			$(document).ready(function() {
 				var $cart = $('#selected-seats'),
 					$counter = $('#counter'),
@@ -76,8 +76,8 @@
 							price   : 40,
 							classes : 'economy-class', //your custom CSS class
 							category: 'CLUB'
-						}					
-					
+						}
+
 					},
 					naming : {
 						top : false,
@@ -91,7 +91,7 @@
 							[ 'f', 'available',   'LOGE' ],
 							[ 'e', 'available',   'CLUB'],
 							[ 'f', 'unavailable', 'Already Booked']
-					    ]					
+					    ]
 					},
 					click: function () {
 						if (this.status() == 'available') {
@@ -109,17 +109,17 @@
 							 */
 							//$counter.text(sc.find('selected').length+1);
 							//$total.text(recalculateTotal(sc)+this.data().price);
-							
+
 							return 'selected';
 						} else if (this.status() == 'selected') {
 							//update the counter
 							//$counter.text(sc.find('selected').length-1);
 							//and total
 							//$total.text(recalculateTotal(sc)-this.data().price);
-						
+
 							//remove the item from our cart
 							//$('#cart-item-'+this.settings.id).remove();
-						
+
 							//seat has been vacated
 							return 'available';
 						} else if (this.status() == 'unavailable') {
@@ -139,12 +139,12 @@
 
 				//let's pretend some seats have already been booked
 				//sc.get(['1_23', '10_21', '12_45', '17_13']).status('unavailable');
-				
+
 				var interval;
 				function callAjax() {
 				  $.ajax({
 				                type: 'GET',
-				                url: '<%-routeurl%>/sko/sa/integration',
+				                url: '<%-routeurl%>/sa/integration',
 				                data: $(this).serialize(),
 				                dataType: 'json',
 				                success: function (data) {
@@ -154,16 +154,16 @@
 																});
 																console.log(reservedseats);
 																sc.get(reservedseats).status('unavailable');
-				                        interval = setTimeout(callAjax, 5000);   
+				                        interval = setTimeout(callAjax, 5000);
 				                }
 				        });
 				}
 				callAjax();
-			
+
 		});
 
-		
-		
+
+
 		</script>
 	</body>
 </html>
