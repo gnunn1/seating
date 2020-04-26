@@ -72,11 +72,20 @@
 	      <artifactId>mysql-connector-java</artifactId>
 	      <scope>runtime</scope>
     </dependency>
+    <!-- Monitoring -->
     <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>1.4.197</version>
-      <scope>runtime</scope>
+      <groupId>io.hawt</groupId>
+      <artifactId>hawtio-springboot</artifactId>
+      <version>2.0.0.fuse-sb2-760022-redhat-00001</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-metrics</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.codahale.metrics</groupId>
+        <artifactId>metrics-core</artifactId>
+        <version>3.0.2</version>
     </dependency>
   </dependencies>
   <build>

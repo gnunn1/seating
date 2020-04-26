@@ -2,6 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:camel="http://camel.apache.org/schema/spring"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- monitoring metrics -->
+    <bean class="org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy"
+            id="policy">
+        <property name="useJmx" value="true"/>
+        <property name="jmxDomain" value="fis.metrics"/>
+    </bean>
+
     <!-- Define a traditional camel context here -->
     <bean class="org.apache.camel.component.kafka.KafkaComponent" id="kafka">
         <property name="brokers" value="seating-kafka-bootstrap:9092"/>
@@ -20,7 +28,7 @@
                 <to uri="direct:getData"/>
             </get>
         </rest>
-        <route id="reserve-seat">
+        <route id="reserve-seat" routePolicyRef="policy">
             <from id="kafka" uri="kafka:registration"/>
             <log id="log-initial-message" message=">>> ${body}"/>
             <setHeader headerName="candidatename" id="set-header-candidate">
@@ -38,7 +46,7 @@
             <log id="log-updated-body" message=">>> ${body}"/>
             <to id="insert-seat-reservation" uri="sql:INSERT INTO reservationlist (candidatename,email,seatname,seatno) VALUES (:#candidatename,:#email,:#seatname,:#seatno);?dataSource=dataSource"/>
         </route>
-        <route id="get-data-route">
+        <route id="get-data-route" routePolicyRef="policy">
             <from id="from-web-service" uri="direct:getData"/>
             <log id="log-body" message=">>> ${body}"/>
             <to id="retrieve-data" uri="sql:select candidatename, email, seatname, seatno from reservationlist; "/>

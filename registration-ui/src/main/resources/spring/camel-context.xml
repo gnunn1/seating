@@ -21,10 +21,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- monitoring metrics -->
+    <bean class="org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy"
+            id="policy">
+        <property name="useJmx" value="true"/>
+        <property name="jmxDomain" value="fis.metrics"/>
+    </bean>
+
+    <!-- Define Kafka Brokers-->
     <bean class="org.apache.camel.component.kafka.KafkaComponent" id="kafka">
         <property name="brokers" value="seating-kafka-bootstrap:9092"/>
     </bean>
-    <camelContext id="spring-context" xmlns="http://camel.apache.org/schema/spring">
+
+    <camelContext id="spring-context" xmlns="http://camel.apache.org/schema/spring" routePolicyRef="policy">
         <route id="request-seat">
             <from id="start" uri="direct:start"/>
             <log id="log-info" message="Starting route"/>
