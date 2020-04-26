@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring       http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!-- monitoring metrics -->
+    <bean class="org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy"
+            id="policy">
+        <property name="useJmx" value="true"/>
+        <property name="jmxDomain" value="fis.metrics"/>
+    </bean>
+
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="api-docs" bindingMode="auto"
             component="servlet" contextPath="/" enableCORS="true" port="8080">
@@ -14,7 +22,7 @@
                 <to uri="direct:integrationseatallocation"/>
             </get>
         </rest>
-        <route id="integration-seat-allocation">
+        <route id="integration-seat-allocation" routePolicyRef="policy">
             <from id="web-service" uri="direct:integrationseatallocation"/>
             <to id="get-seats" uri="sql:select seatno from bookedseat?dataSource=dataSource"/>
             <log id="output-body" message=">>> ${body}"/>
