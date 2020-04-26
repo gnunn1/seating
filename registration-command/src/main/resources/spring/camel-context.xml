@@ -16,7 +16,7 @@
     </bean>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="api-docs" bindingMode="auto"
-            component="undertow" contextPath="/registration"
+            component="servlet" contextPath="/registration"
             enableCORS="true" port="8080">
             <apiProperty key="cors" value="true"/>
             <apiProperty key="api.title" value="Registration"/>
