@@ -77,10 +77,6 @@
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-swagger-java-starter</artifactId>
     </dependency>
-    <dependency>
-      <groupId>io.fabric8</groupId>
-      <artifactId>openshift-client</artifactId>
-    </dependency>
     <!-- Database -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
