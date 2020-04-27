@@ -2,14 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:camel="http://camel.apache.org/schema/spring"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
-
     <!-- monitoring metrics -->
-    <bean class="org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy"
-            id="policy">
+    <bean
+        class="org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy" id="policy">
         <property name="useJmx" value="true"/>
         <property name="jmxDomain" value="fis.metrics"/>
     </bean>
-
     <!-- Define a traditional camel context here -->
     <bean class="org.apache.camel.component.kafka.KafkaComponent" id="kafka">
         <property name="brokers" value="seating-kafka-bootstrap:9092"/>

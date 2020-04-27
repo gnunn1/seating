@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:camel="http://camel.apache.org/schema/spring"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
 
-
+  xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+       
     <!-- monitoring metrics -->
-    <bean class="org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy"
-            id="policy">
+    <bean
+        class="org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicy" id="policy">
         <property name="useJmx" value="true"/>
         <property name="jmxDomain" value="fis.metrics"/>
     </bean>
-
     <!-- Define Kafka Brokers -->
     <bean class="org.apache.camel.component.kafka.KafkaComponent" id="kafka">
         <property name="brokers" value="seating-kafka-bootstrap:9092"/>
     </bean>
-
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="api-docs" bindingMode="auto"
             component="undertow" contextPath="/analytic"
@@ -24,12 +27,12 @@
             <apiProperty key="api.title" value="Seats Allocation"/>
             <apiProperty key="api.version" value="1.0.0"/>
         </restConfiguration>
-        <rest path="/status">
-            <get uri="class">
+        <rest id="rest-7250fcc5-e97e-4066-9336-af461f9a9b13" path="/status">
+            <get id="get-5a7c92f9-62fe-4a6c-b7a1-c97e4d344c28" uri="class">
                 <description>Class booking status</description>
                 <to uri="direct:classstatus"/>
             </get>
-            <get uri="row">
+            <get id="get-64ce5e4c-fd2e-4a36-b444-abac9ab8000b" uri="row">
                 <description>Row booking status</description>
                 <to uri="direct:rowstatus"/>
             </get>
@@ -40,17 +43,17 @@
                 <jsonpath>$.seatno</jsonpath>
             </setBody>
             <bean id="_bean1" ref="AnalyticProcessor"/>
-            <to id="_to1" uri="sql:INSERT INTO rowcount (class, row) VALUES (:#class,:#row);?dataSource=dataSource"/>
+            <to id="_to1" uri="sql:INSERT INTO rowcount (class, row) VALUES (:#class,:#row);?dataSource=#dataSource"/>
             <log id="route-log1" message=">>> ${body}"/>
         </route>
         <route id="class-route" routePolicyRef="policy">
             <from id="_direct1" uri="direct:classstatus"/>
-            <to id="_to2" uri="sql:SELECT class, COUNT(row) as cnt FROM rowcount GROUP BY class;?dataSource=dataSource"/>
+            <to id="_to2" uri="sql:SELECT class, COUNT(row) as cnt FROM rowcount GROUP BY class;?dataSource=#dataSource"/>
             <log id="route-log2" message=">>> ${body}"/>
         </route>
         <route id="row-route" routePolicyRef="policy">
             <from id="_direct2" uri="direct:rowstatus"/>
-            <to id="_to3" uri="sql:SELECT row, COUNT(row) as cnt FROM rowcount GROUP BY row;?dataSource=dataSource"/>
+            <to id="_to3" uri="sql:SELECT row, COUNT(row) as cnt FROM rowcount GROUP BY row;?dataSource=#dataSource"/>
             <log id="route-log4" message=">>> ${body}"/>
         </route>
     </camelContext>

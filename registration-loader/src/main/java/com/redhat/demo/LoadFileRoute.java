@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.redhat.demo.model.Reservation;
 import com.redhat.demo.model.ReservationCsvRecord;
-import com.redhat.demo.util.ArrayListAggregationStrategy;
-import com.redhat.demo.util.BatchSizePredicate;
+//import com.redhat.demo.util.ArrayListAggregationStrategy;
+//import com.redhat.demo.util.BatchSizePredicate;
 import com.redhat.demo.util.CsvRecordtoReservationMapper;
 
 
