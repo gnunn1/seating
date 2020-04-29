@@ -21,7 +21,7 @@
             <from id="timer" uri="timer:foo?period=500"/>
             <bean id="seat-generator-bean" ref="SeatNoGenerator"/>
             <marshal id="marshall">
-                <json library="Jackson" unmarshalTypeName="org.mycompany.Reservation"/>
+                <json library="Jackson" unmarshalTypeName="com.redhat.demo.Reservation"/>
             </marshal>
             <log id="log-body" message=">>> ${body}"/>
             <to id="send-to-kafka" uri="kafka:registration"/>
