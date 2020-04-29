@@ -44,6 +44,12 @@ public class LoadFileRoute extends RouteBuilder {
     @Value("${file.type}")
     private String fileType;
 
+    @Value("${kafka.brokers}")
+    private String brokers;
+
+    @Value("${kafka.topic}")
+    private String topic;
+
     @Override
     public void configure() {
 
@@ -60,6 +66,7 @@ public class LoadFileRoute extends RouteBuilder {
                 // .aggregate(constant(true), new ArrayListAggregationStrategy())
                 // .completionPredicate(new BatchSizePredicate(maxRecords))
                 // .completionTimeout(batchTimeout)
+                .to(buildKafkaUrl())
                 .end();
     }
 
@@ -68,5 +75,11 @@ public class LoadFileRoute extends RouteBuilder {
                 QUESTION_MARK + "noop=" + isNoop +
                 AMPERSAND + "recursive=" + isRecursive +
                 AMPERSAND + "include=" + fileType;
+    }
+
+    private String buildKafkaUrl() {
+        return "kafka" + COLON + topic +
+                QUESTION_MARK + "brokers=" + brokers;
+
     }
 }
