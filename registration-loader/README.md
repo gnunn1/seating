@@ -1,0 +1,1 @@
+Code adapted from Camel batch processing example here: https://github.com/abnair2016/spring-camel
