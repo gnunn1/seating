@@ -3,10 +3,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.redhat.demo.seating</groupId>
-  <artifactId>seat-reserve-simulator</artifactId>
+  <artifactId>registration-simulator</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>Seating Reservation Simulator</name>
-  <description>Service that simulates users booking seats</description>
+  <name>Registration Simulator</name>
+  <description>Service that simulates users registering seats</description>
   <properties>
     <fuse.version>7.6.0.fuse-sb2-760028-redhat-00001</fuse.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
