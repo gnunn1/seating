@@ -90,7 +90,10 @@ $(document).ready(function() {
 	    function callAjax() {
 				  $.ajax({
 				    type: 'GET',
-						url: '<%-routeurl%>/sa/status',
+					url: '<%-routeurl%>',
+					headers: {
+								'user_key':'<%-api_key%>'
+							},
 				    data: $(this).serialize(),
 				    dataType: 'json',
 				    success: function (data) {
