@@ -110,6 +110,11 @@
       <version>0.32.0</version>
     </dependency>
     <dependency>
+      <groupId>io.jaegertracing</groupId>
+      <artifactId>jaeger-tracerresolver</artifactId>
+      <version>0.32.0</version>
+    </dependency>
+    <dependency>
       <groupId>io.opentracing.contrib</groupId>
       <artifactId>opentracing-agent</artifactId>
       <version>0.4.0</version>
