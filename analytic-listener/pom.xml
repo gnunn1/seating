@@ -93,8 +93,15 @@
       <artifactId>camel-opentracing-starter</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-opentracing</artifactId>
+      <groupId>io.jaegertracing</groupId>
+      <artifactId>jaeger-client</artifactId>
+      <version>0.32.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.opentracing.contrib</groupId>
+      <artifactId>opentracing-agent</artifactId>
+      <version>0.4.0</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
   <build>
