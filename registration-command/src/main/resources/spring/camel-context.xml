@@ -11,7 +11,6 @@
     <!-- Define a traditional camel context here -->
     <bean class="org.apache.camel.component.kafka.KafkaComponent" id="kafka">
         <property name="brokers" value="seating-kafka-bootstrap:9092"/>
-        <property name="clientid" value="registration-command"/>
     </bean>
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="api-docs" bindingMode="auto"
@@ -28,7 +27,7 @@
             </get>
         </rest>
         <route id="reserve-seat" routePolicyRef="policy">
-            <from id="kafka" uri="kafka:registration"/>
+            <from id="kafka" uri="kafka:registration?clientId=registration-ui"/>
             <log id="log-initial-message" message=">>> ${body}"/>
             <setHeader headerName="candidatename" id="set-header-candidate">
                 <jsonpath>$.candidatename</jsonpath>
