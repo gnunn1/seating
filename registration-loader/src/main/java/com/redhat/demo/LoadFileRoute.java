@@ -79,7 +79,7 @@ public class LoadFileRoute extends RouteBuilder {
 
     private String buildKafkaUrl() {
         return "kafka" + COLON + topic +
-                QUESTION_MARK + "brokers=" + brokers;
-
+                QUESTION_MARK + "brokers=" + brokers +
+                AMPERSAND + "clientId=registration-loader";
     }
 }

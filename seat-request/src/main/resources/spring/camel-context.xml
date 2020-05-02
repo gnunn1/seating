@@ -17,13 +17,13 @@
 
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route id="transform-message" routePolicyRef="policy">
-            <from id="kafka-registration" uri="kafka:registration"/>
+            <from id="kafka-registration" uri="kafka:registration?clientId=seat-request"/>
             <log id="log-initial-message" message=">>> ${body}"/>
             <setBody id="set-body">
                 <jsonpath>$.seatno</jsonpath>
             </setBody>
             <log id="log-transformed-body" message=">>> ${body}"/>
-            <to id="send-to-kafka" uri="kafka:allocateseats"/>
+            <to id="send-to-kafka" uri="kafka:allocateseats?clientId=seat-request"/>
         </route>
     </camelContext>
 </beans>
