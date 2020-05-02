@@ -32,6 +32,7 @@
     <!-- Define Kafka Brokers-->
     <bean class="org.apache.camel.component.kafka.KafkaComponent" id="kafka">
         <property name="brokers" value="seating-kafka-bootstrap:9092"/>
+        <property name="clientid" value="registration-ui"/>
     </bean>
 
     <camelContext id="spring-context" xmlns="http://camel.apache.org/schema/spring">
