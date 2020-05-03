@@ -106,8 +106,13 @@
     </dependency>
     <dependency>
       <groupId>io.jaegertracing</groupId>
-      <artifactId>jaeger-core</artifactId>
-      <version>0.34.1.redhat-00002</version>
+      <artifactId>jaeger-client</artifactId>
+      <version>0.32.0</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jaegertracing</groupId>
+      <artifactId>jaeger-tracerresolver</artifactId>
+      <version>0.32.0</version>
     </dependency>
   </dependencies>
   <build>
