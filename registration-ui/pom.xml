@@ -81,14 +81,8 @@
     </dependency>
     <dependency>
       <groupId>io.jaegertracing</groupId>
-      <artifactId>jaeger-client</artifactId>
-      <version>0.32.0</version>
-    </dependency>
-    <dependency>
-      <groupId>io.opentracing.contrib</groupId>
-      <artifactId>opentracing-agent</artifactId>
-      <version>0.4.0</version>
-      <scope>provided</scope>
+      <artifactId>jaeger-core</artifactId>
+      <version>0.34.1.redhat-00002</version>
     </dependency>
   </dependencies>
   <build>
