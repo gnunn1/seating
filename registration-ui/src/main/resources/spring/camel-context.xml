@@ -30,11 +30,9 @@
     </bean>
 
     <!-- Define Kafka Brokers-->
-    <!--
     <bean class="org.apache.camel.component.kafka.KafkaComponent" id="kafka">
         <property name="brokers" value="seating-kafka-bootstrap:9092"/>
     </bean>
--->
 
     <camelContext id="spring-context" xmlns="http://camel.apache.org/schema/spring">
         <route id="request-seat" routePolicyRef="policy">
@@ -45,7 +43,7 @@
                 <json library="Jackson" unmarshalTypeName="com.redhat.demo.Registration"/>
             </marshal>
             <log id="log-body" message="${body}"/>
-             <to id="send-seat" uri="kafka:registration?brokers=seating-kafka-bootstrap:9092&amp;clientId=registration-ui"/>
+             <to id="send-seat" uri="kafka:registration?clientId=registration-ui"/>
         </route>
     </camelContext>
 </beans>
