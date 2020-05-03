@@ -84,6 +84,11 @@
       <artifactId>jaeger-client</artifactId>
       <version>0.32.0</version>
     </dependency>
+    <dependency>
+      <groupId>io.jaegertracing</groupId>
+      <artifactId>jaeger-tracerresolver</artifactId>
+      <version>0.32.0</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
