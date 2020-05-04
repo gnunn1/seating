@@ -47,7 +47,6 @@
             <setHeader headerName="seatno" id="set-header-seat-no">
                 <jsonpath>$.seatno</jsonpath>
             </setHeader>
-            <log id="log-updated-body" message=">>> ${body}"/>
             <to id="insert-seat-reservation" uri="sql:INSERT INTO reservationlist (candidatename,email,seatname,seatno) VALUES (:#candidatename,:#email,:#seatname,:#seatno);?dataSource=dataSource"/>
         </route>
         <route id="get-data-route" routePolicyRef="policy">
