@@ -26,9 +26,10 @@ import org.apache.camel.Exchange;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 public class KafkaSpanDecorator extends AbstractMessagingSpanDecorator {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(KafkaSpanDecorator.class);
+    private static final Logger LOG = LoggerFactory.getLogger(KafkaSpanDecorator.class);
 
     public static final String KAFKA_PARTITION_TAG = "kafka.partition";
     public static final String KAFKA_PARTITION_KEY_TAG = "kafka.partition.key";
@@ -94,7 +95,7 @@ public class KafkaSpanDecorator extends AbstractMessagingSpanDecorator {
     private <T> String getValue(final Exchange exchange, final String header, Class<T> type) {
         T partition = exchange.getIn().getHeader(header, type);
         String value = partition != null ? String.valueOf(partition) : exchange.getIn().getHeader(header, String.class);
-        LOGGER.info("Read Header: " + header +", Value:"+value);
+        LOG.trace("Header: " + value);
         return value;
     }
 
