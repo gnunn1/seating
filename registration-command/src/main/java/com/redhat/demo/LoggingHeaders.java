@@ -1,5 +1,7 @@
 package com.redhat.demo;
 
+import java.nio.charset.StandardCharsets;
+
 import org.apache.camel.Exchange;
 import org.apache.camel.spi.HeaderFilterStrategy;
 
@@ -15,15 +17,30 @@ public class LoggingHeaders implements HeaderFilterStrategy {
 
     @Override
     public boolean applyFilterToCamelHeaders(String headerName, Object headerValue, Exchange exchange) {
-        String value = (headerValue==null)?"null":"("+headerValue.getClass().getName()+"): "+ headerValue.toString();
-        LOGGER.info("Camel Header: " + headerName + ":" + value);
+        LOGGER.info("Camel Header: " + headerName + ":" + getHeaderValue(headerValue));
         return false;
     }
 
     @Override
     public boolean applyFilterToExternalHeaders(String headerName, Object headerValue, Exchange exchange) {
-        String value = (headerValue==null)?"null":"("+headerValue.getClass().getName()+"): "+ headerValue.toString();
-        LOGGER.info("External Header: " + headerName + ":" + value);
+        LOGGER.info("External Header: " + headerName + ":" + getHeaderValue(headerValue));
         return false;
+    }
+
+    private String getHeaderValue(Object headerValue) {
+        if (headerValue != null) {
+            try {
+                byte[] bytes = (byte[])headerValue;
+                if (bytes != null) {
+                    String value = new String(bytes, StandardCharsets.UTF_8);
+                    return "(byte[]): " + value;
+                }
+            } catch (Throwable t) {
+                LOGGER.error("Error when trying to convert bytes to string", t);
+            }
+            return "("+headerValue.getClass().getName()+"): "+ headerValue.toString();
+        } else {
+            return "null";
+        }
     }
 }
