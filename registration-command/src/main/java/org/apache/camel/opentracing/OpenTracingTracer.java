@@ -306,11 +306,11 @@ public class OpenTracingTracer extends ServiceSupport implements RoutePolicyFact
                 Span span = tracer.buildSpan(sd.getOperationName(exchange, route.getEndpoint()))
                     .asChildOf(tracer.extract(Format.Builtin.TEXT_MAP, sd.getExtractAdapter(exchange.getIn().getHeaders(), encoding)))
                     .withTag(Tags.SPAN_KIND.getKey(), sd.getReceiverSpanKind()).start();
-                LOG.trace("Initial span", span);
+                LOG.trace("Initial span={}", span);
                 sd.pre(span, exchange, route.getEndpoint());
-                LOG.trace("Post pre span", span);
+                LOG.trace("Post pre span={}", span);
                 ActiveSpanManager.activate(exchange, span);
-                LOG.trace("Post ActiveSpanManager", span);
+                LOG.trace("Post ActiveSpanManager={}", span);
                 if (LOG.isTraceEnabled()) {
                     LOG.trace("OpenTracing: start server span={}", span);
                 }
