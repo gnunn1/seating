@@ -46,7 +46,7 @@
                 <json library="Jackson" unmarshalTypeName="com.redhat.demo.Registration"/>
             </marshal>
             <log id="log-body" message="${body}"/>
-             <to id="send-seat" uri="kafka:registration?clientId=registration-ui&amp;partitionKey=0&amp;headerFilterStrategy=#logHeaders"/>
+             <to id="send-seat" uri="kafka:registration?clientId=registration-ui&amp;headerFilterStrategy=#logHeaders"/>
         </route>
     </camelContext>
 </beans>
