@@ -5,8 +5,8 @@
   <groupId>com.redhat.demo.seating</groupId>
   <artifactId>registration-command</artifactId>
   <version>1.0.0-SNAPSHOT</version>
-  <name>Fabric8 :: Quickstarts :: Spring-Boot :: Camel XML</name>
-  <description>Spring Boot example running a Camel route defined in XML</description>
+  <name>Registration Command</name>
+  <description>Accepts registration requests and persists them in the database</description>
   <properties>
     <fuse.version>7.6.0.fuse-sb2-760028-redhat-00001</fuse.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
