@@ -95,7 +95,7 @@ public class KafkaSpanDecorator extends AbstractMessagingSpanDecorator {
     private <T> String getValue(final Exchange exchange, final String header, Class<T> type) {
         T partition = exchange.getIn().getHeader(header, type);
         String value = partition != null ? String.valueOf(partition) : exchange.getIn().getHeader(header, String.class);
-        LOG.trace("Header: " + value);
+        LOG.trace("Header: "+ header +":" + value);
         return value;
     }
 
