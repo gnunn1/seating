@@ -35,6 +35,8 @@ public class LoggingHeaders implements HeaderFilterStrategy {
                     String value = new String(bytes, StandardCharsets.UTF_8);
                     return "(byte[]): " + value;
                 }
+            } catch (ClassCastException c) {
+                //Ignore and do default
             } catch (Throwable t) {
                 LOGGER.error("Error when trying to convert bytes to string", t);
             }
