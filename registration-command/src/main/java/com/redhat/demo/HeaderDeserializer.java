@@ -14,7 +14,7 @@ public class HeaderDeserializer implements KafkaHeaderDeserializer {
     @Override
     public Object deserialize(String key, byte[] value) {
         LOGGER.info("Deserializer received key: " + key);
-        if (key == "uber-trace-id") {
+        if ("uber-trace-id".equals(key)) {
             LOGGER.info("Deserializing uber-trace-id");
             return new String(value, StandardCharsets.UTF_8);
         } else {
