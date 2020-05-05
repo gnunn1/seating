@@ -18,6 +18,9 @@
     <!-- Trace Headers -->
     <bean class="com.redhat.demo.LoggingHeaders" id="logHeaders"/>
 
+    <!-- Deserialize Headers -->
+    <bean class="com.redhat.demo.HeaderDeserializer" id="deserializer"/>
+
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <restConfiguration apiContextPath="api-docs" bindingMode="auto"
             component="servlet" contextPath="/registration"
@@ -33,7 +36,7 @@
             </get>
         </rest>
         <route id="reserve-seat" routePolicyRef="policy">
-            <from id="kafka" uri="kafka:registration?clientId=registration-ui&amp;headerFilterStrategy=#logHeaders"/>
+            <from id="kafka" uri="kafka:registration?clientId=registration-ui&amp;kafkaHeaderDeserializer=#deserializer&amp;headerFilterStrategy=#logHeaders"/>
             <log id="log-initial-message" message=">>> ${body}"/>
             <setHeader headerName="candidatename" id="set-header-candidate">
                 <jsonpath>$.candidatename</jsonpath>
