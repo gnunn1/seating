@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class HeaderDeserializer implements KafkaHeaderDeserializer {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(LoggingHeaders.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(HeaderDeserializer.class);
 
     @Override
     public Object deserialize(String key, byte[] value) {
