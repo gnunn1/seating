@@ -15,9 +15,12 @@
         <property name="brokers" value="seating-kafka-bootstrap:9092"/>
     </bean>
 
+    <!-- Deserialize Headers -->
+    <bean class="com.redhat.demo.HeaderDeserializer" id="deserializer"/>
+
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route id="transform-message" routePolicyRef="policy">
-            <from id="kafka-registration" uri="kafka:registration?clientId=seat-request"/>
+            <from id="kafka-registration" uri="kafka:registration?clientId=seat-request&amp;kafkaHeaderDeserializer=#deserializer"/>
             <log id="log-initial-message" message=">>> ${body}"/>
             <setBody id="set-body">
                 <jsonpath>$.seatno</jsonpath>

@@ -10,7 +10,9 @@
     </encoder>
   </appender>
 
+  <!--
   <logger name="org.apache.camel.opentracing" level="trace"/>>
+  -->
 
   <root level="info">
     <appender-ref ref="STDOUT" />
