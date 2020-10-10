@@ -145,9 +145,6 @@
 				  $.ajax({
 				                type: 'GET',
 				                url: '<%-routeurl%>',
-								headers: {
-									'user_key':'<%-api_key%>'
-								},
 				                data: $(this).serialize(),
 				                dataType: 'json',
 				                success: function (data) {
