@@ -1,5 +1,6 @@
 const express = require('express')
 const htmls = require('ejs')
+var cors = require('cors')
 
 const app = express()
 
@@ -7,7 +8,7 @@ app.use(express.static('js'))
 app.set('view engine', 'ejs');
 
 
-app.get('/', function (req, res) {
+app.get('/', cors(), function (req, res) {
 
 	 console.log("process.env.HOSTNAME:["+process.env.ROUTE_HOSTNAME+"]");
    //res.sendFile( __dirname + "/" + "index.html" ,{testenv: process.env.HOSTNAME || 'http://localhost:3000'});
