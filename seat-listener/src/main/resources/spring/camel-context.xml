@@ -24,7 +24,7 @@
     <!-- Define a traditional camel context here -->
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route id="event-listener-route" routePolicyRef="policy">
-            <from id="kafka-event" uri="kafka:allocateseats?clientId=seat-listener&amp;groupId=readeruigroup&amp;kafkaHeaderDeserializer=#deserializer&amp;headerFilterStrategy=#logHeaders"/>
+            <from id="kafka-event" uri="kafka:allocateseats?clientId=seat-listener&amp;groupId=seatgroup&amp;kafkaHeaderDeserializer=#deserializer&amp;headerFilterStrategy=#logHeaders"/>
             <to id="book-seat" uri="sql:INSERT INTO bookedseat (seatno) VALUES (#);?dataSource=dataSource"/>
             <log id="event-listener-body" message=">>> ${body}"/>
         </route>

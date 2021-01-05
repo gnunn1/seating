@@ -20,7 +20,7 @@
 
     <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
         <route id="transform-message" routePolicyRef="policy">
-            <from id="kafka-registration" uri="kafka:registration?clientId=seat-request&amp;kafkaHeaderDeserializer=#deserializer"/>
+            <from id="kafka-registration" uri="kafka:registration?clientId=seat-request&amp;kafkaHeaderDeserializer=#deserializer&amp;groupId=seatgroup"/>
             <log id="log-initial-message" message=">>> ${body}"/>
             <setBody id="set-body">
                 <jsonpath>$.seatno</jsonpath>

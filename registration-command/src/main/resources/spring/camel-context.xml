@@ -36,7 +36,7 @@
             </get>
         </rest>
         <route id="reserve-seat" routePolicyRef="policy">
-            <from id="kafka" uri="kafka:registration?clientId=registration-ui&amp;kafkaHeaderDeserializer=#deserializer&amp;headerFilterStrategy=#logHeaders"/>
+            <from id="kafka" uri="kafka:registration?clientId=registration-ui&amp;kafkaHeaderDeserializer=#deserializer&amp;headerFilterStrategy=#logHeaders&amp;groupId=registrationgroup"/>
             <log id="log-initial-message" message=">>> ${body}"/>
             <setHeader headerName="candidatename" id="set-header-candidate">
                 <jsonpath>$.candidatename</jsonpath>
